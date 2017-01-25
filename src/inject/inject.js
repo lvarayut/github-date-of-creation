@@ -22,8 +22,12 @@ async function getDateOfCreation(uri) {
   }
 }
 
+function formatDate(date, format) {
+  return moment(date).format(format);
+}
+
 function injectDateToHTML(date) {
-  const ul = document.querySelector('ul.numbers-summary')
+  const ul = document.querySelector('ul.numbers-summary');
   const dateHTML =  (
     `<li>
       <a>
@@ -40,7 +44,8 @@ async function init() {
   if (isLandPage()) {
     const uri = getRepositoryURI();
     const date = await getDateOfCreation(uri);
-    injectDateToHTML(date);
+    const formattedDate = formatDate(date, 'MMMM, YYYY');
+    injectDateToHTML(formattedDate);
   }
 }
 
