@@ -27,9 +27,6 @@
       "js": [
         "src/vendors/moment.min.js",
         "src/inject/inject.js"
-      ],
-      "css": [
-        "src/inject/inject.css"
       ]
     }
   ]
