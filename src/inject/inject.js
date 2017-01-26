@@ -1,10 +1,18 @@
 /* global chrome */
 
+/**
+ * Check whether the current page is a landpage or not
+ * @returns {boolean}
+ */
 function isLandPage() {
   const uri = window.location.pathname.substring(1);
   return uri.split('/').length === 2;
 }
 
+/**
+ * Get a complete uri in the format of https://api.github.com/repos/{:owner}/{:repository}
+ * @returns {string}
+ */
 function getRepositoryURI() {
   const API = 'https://api.github.com/repos';
   const uri = window.location.pathname.substring(1);
@@ -12,6 +20,11 @@ function getRepositoryURI() {
   return `${API}/${owner}/${repository}`;
 }
 
+/**
+ * Send a GET request to the given URI
+ * @param uri
+ * @returns {Promise.<String>}
+ */
 async function getDateOfCreation(uri) {
   try {
     const response = await fetch(uri);
@@ -22,10 +35,20 @@ async function getDateOfCreation(uri) {
   }
 }
 
+/**
+ * Format the given date using moment.js
+ * @param date
+ * @param format
+ * @returns {String}
+ */
 function formatDate(date, format) {
   return moment(date).format(format);
 }
 
+/**
+ * Inject the given date into HTML
+ * @param date
+ */
 function injectDateToHTML(date) {
   const ul = document.querySelector('ul.numbers-summary');
   const dateHTML =  (
@@ -40,6 +63,9 @@ function injectDateToHTML(date) {
   ul.insertAdjacentHTML('beforeend', dateHTML);
 }
 
+/**
+ * Main function
+ */
 async function init() {
   if (isLandPage()) {
     const uri = getRepositoryURI();
