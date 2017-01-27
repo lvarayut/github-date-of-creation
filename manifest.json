@@ -10,9 +10,8 @@
     "128": "icons/icon128.png"
   },
   "author": "Varayut Lerdkanlayanawat",
-  "page_action": {
-    "default_icon": "icons/icon19.png",
-    "default_title": "Github - Date of creation"
+  "browser_action": {
+    "default_icon": "icons/icon19.png"
   },
   "permissions": [
     "http://github.com/*",
