@@ -1,4 +1,4 @@
-/* global chrome, moment, DATE_FORMAT_KEY, DEFAULT_DATE_FORMAT */
+/* global chrome, moment, DATE_FORMAT_KEY, URIS_KEY, DEFAULT_DATE_FORMAT */
 
 /**
  * Check whether the current page is a landpage or not
@@ -21,15 +21,60 @@ function getRepositoryURI() {
 }
 
 /**
- * Send a GET request to the given URI
+ * Get an URI from a local storage
+ * @param uri
+ * @returns {Promise}
+ */
+function getURIFromStorage(uri) {
+  return new Promise((resolve) => {
+    chrome.storage.sync.get({ [URIS_KEY]: {} }, (response) => {
+      const uris = response[URIS_KEY];
+      if (uris[uri]) resolve(uris[uri]);
+      else resolve(null);
+    });
+  });
+}
+
+/**
+ * Add a new URI to a local storage
+ * @param uri
+ * @param date
+ * @returns {Promise}
+ */
+function addURIToStorage(uri, date) {
+  return new Promise((resolve) => {
+    chrome.storage.sync.get({ [URIS_KEY]: {} }, (response) => {
+      const uris = response[URIS_KEY];
+      uris[uri] = date;
+      chrome.storage.sync.set({ [URIS_KEY]: uris }, () => {
+        resolve();
+      });
+    });
+  });
+}
+
+
+/**
+ * Get a date from a given URI
  * @param uri
  * @returns {Promise.<String>}
  */
 async function getDateOfCreation(uri) {
   try {
+    // If the uri exists in the storage, which means
+    // it has been fetched before, the stored data will be
+    // used without fetching again.
+    const existingDate = await getURIFromStorage(uri);
+    if (existingDate) {
+      return existingDate;
+    }
+
+    // Otherwise, fetch the uri and store it inside the storage
     const response = await fetch(uri);
     const data = await response.json();
-    return data.created_at;
+    const date = data.created_at;
+    await addURIToStorage(uri, date); // eslint-disable-line no-unused-expressions
+    return date;
   } catch (e) {
     throw new Error(e);
   }
