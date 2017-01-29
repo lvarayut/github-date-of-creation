@@ -25,6 +25,7 @@
       ],
       "js": [
         "src/vendors/moment.min.js",
+        "src/constant/index.js",
         "src/inject/index.js"
       ]
     }
