@@ -36,6 +36,18 @@ async function getDateOfCreation(uri) {
 }
 
 /**
+ * Get date format
+ * @returns Promise
+ */
+function getDateFormat() {
+  return new Promise((resolve) => {
+    chrome.storage.sync.get({ [DATE_FORMAT_KEY]: DEFAULT_DATE_FORMAT }, (response) => {
+      resolve(response[DATE_FORMAT_KEY]);
+    });
+  });
+}
+
+/**
  * Format the given date using moment.js
  * @param date
  * @param format
@@ -70,7 +82,8 @@ async function init() {
   if (isLandPage()) {
     const uri = getRepositoryURI();
     const date = await getDateOfCreation(uri);
-    const formattedDate = formatDate(date, 'MMMM, YYYY');
+    const dateFormat = await getDateFormat();
+    const formattedDate = formatDate(date, dateFormat);
     injectDateToHTML(formattedDate);
   }
 }

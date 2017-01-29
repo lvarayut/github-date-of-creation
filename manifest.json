@@ -15,7 +15,8 @@
   },
   "permissions": [
     "http://github.com/*",
-    "https://github.com/*"
+    "https://github.com/*",
+    "storage"
   ],
   "content_scripts": [
     {
@@ -29,5 +30,9 @@
         "src/inject/index.js"
       ]
     }
-  ]
+  ],
+  "options_ui": {
+    "page": "src/option/index.html",
+    "chrome_style": true
+  }
 }

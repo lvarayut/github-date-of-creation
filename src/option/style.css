@@ -1,0 +1,11 @@
+input[type="text"] {
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, .12);
+  font-size: 16px;
+  width: 100%;
+}
+
+span.asterisk {
+  font-style: italic;
+  color: grey;
+}
