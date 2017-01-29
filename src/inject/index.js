@@ -15,7 +15,7 @@ function isLandPage() {
  */
 function getRepositoryURI() {
   const API = 'https://api.github.com/repos';
-  const uri = window.location.pathname.substring(1);
+  const uri = window.encodeURI(window.location.pathname.substring(1));
   const [owner, repository] = uri.split('/');
   return `${API}/${owner}/${repository}`;
 }
