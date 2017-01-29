@@ -1,3 +1,8 @@
+/* global chrome, DATE_FORMAT_KEY, DEFAULT_DATE_FORMAT */
+
+/**
+ * Main function
+ */
 function init() {
   // Get the date-format field and initialize its value
   const dateFormatElement = document.getElementById('date-format');
