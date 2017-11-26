@@ -1,6 +1,6 @@
 {
   "name": "Github - Date of creation",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "manifest_version": 2,
   "description": "Display a date of creation of a repository hosted on Github",
   "homepage_url": "https://github.com/lvarayut/github-date-of-creation",
