@@ -62,7 +62,6 @@ function addURIToStorage(uri, date) {
   });
 }
 
-
 /**
  * Get a date from a given URI
  * @param uri
@@ -95,9 +94,12 @@ async function getDateOfCreation(uri) {
  */
 function getDateFormat() {
   return new Promise((resolve) => {
-    chrome.storage.sync.get({ [DATE_FORMAT_KEY]: DEFAULT_DATE_FORMAT }, (response) => {
-      resolve(response[DATE_FORMAT_KEY]);
-    });
+    chrome.storage.sync.get(
+      { [DATE_FORMAT_KEY]: DEFAULT_DATE_FORMAT },
+      (response) => {
+        resolve(response[DATE_FORMAT_KEY]);
+      }
+    );
   });
 }
 
@@ -116,17 +118,19 @@ function formatDate(date, format) {
  * @param date
  */
 function injectDateToHTML(date) {
-  const ul = document.querySelector('ul.numbers-summary');
-  const dateHTML = (
-    `<li id="gdc">
-      <a>
-        <svg class="octicon octicon-calendar" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M13 2h-1v1.5c0 .28-.22.5-.5.5h-2c-.28 0-.5-.22-.5-.5V2H6v1.5c0 .28-.22.5-.5.5h-2c-.28 0-.5-.22-.5-.5V2H2c-.55 0-1 .45-1 1v11c0 .55.45 1 1 1h11c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1zm0 12H2V5h11v9zM5 3H4V1h1v2zm6 0h-1V1h1v2zM6 7H5V6h1v1zm2 0H7V6h1v1zm2 0H9V6h1v1zm2 0h-1V6h1v1zM4 9H3V8h1v1zm2 0H5V8h1v1zm2 0H7V8h1v1zm2 0H9V8h1v1zm2 0h-1V8h1v1zm-8 2H3v-1h1v1zm2 0H5v-1h1v1zm2 0H7v-1h1v1zm2 0H9v-1h1v1zm2 0h-1v-1h1v1zm-8 2H3v-1h1v1zm2 0H5v-1h1v1zm2 0H7v-1h1v1zm2 0H9v-1h1v1z"></path></svg>
+  const aboutElement = document
+    .querySelector('.octicon-book')
+    .closest('.BorderGrid-cell');
+  const dateHTML = `
+    <div id="gdc" class="mt-3">
+      <a class="muted-link" href="#readme">
+        <svg height="16" class="octicon octicon-calendar mr-2" mr="2" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path fill-rule="evenodd" d="M13 2h-1v1.5c0 .28-.22.5-.5.5h-2c-.28 0-.5-.22-.5-.5V2H6v1.5c0 .28-.22.5-.5.5h-2c-.28 0-.5-.22-.5-.5V2H2c-.55 0-1 .45-1 1v11c0 .55.45 1 1 1h11c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1zm0 12H2V5h11v9zM5 3H4V1h1v2zm6 0h-1V1h1v2zM6 7H5V6h1v1zm2 0H7V6h1v1zm2 0H9V6h1v1zm2 0h-1V6h1v1zM4 9H3V8h1v1zm2 0H5V8h1v1zm2 0H7V8h1v1zm2 0H9V8h1v1zm2 0h-1V8h1v1zm-8 2H3v-1h1v1zm2 0H5v-1h1v1zm2 0H7v-1h1v1zm2 0H9v-1h1v1zm2 0h-1v-1h1v1zm-8 2H3v-1h1v1zm2 0H5v-1h1v1zm2 0H7v-1h1v1zm2 0H9v-1h1v1z"></path></svg>
         ${date}
-      </a>
-      </li>`
-  );
+      </a>  
+    </div>
+    `;
 
-  ul.insertAdjacentHTML('beforeend', dateHTML);
+  aboutElement.insertAdjacentHTML('beforeend', dateHTML);
 }
 
 /**
