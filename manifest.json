@@ -1,6 +1,6 @@
 {
   "name": "Github - Date of creation",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "manifest_version": 2,
   "description": "Display a date of creation of a repository hosted on Github",
   "homepage_url": "https://github.com/lvarayut/github-date-of-creation",
@@ -13,22 +13,13 @@
   "browser_action": {
     "default_icon": "icons/icon19.png"
   },
-  "permissions": [
-    "http://github.com/*",
-    "https://github.com/*",
-    "storage"
-  ],
+  "permissions": ["http://github.com/*", "https://github.com/*", "storage"],
   "background": {
-    "scripts": [
-      "src/bg/index.js"
-    ]
+    "scripts": ["src/bg/index.js"]
   },
   "content_scripts": [
     {
-      "matches": [
-				"http://github.com/*",
-				"https://github.com/*"
-      ],
+      "matches": ["http://github.com/*", "https://github.com/*"],
       "js": [
         "src/vendors/moment.min.js",
         "src/constant/index.js",
