@@ -122,7 +122,7 @@ function formatDate(date, format) {
  */
 function injectDateToHTML(date) {
   const aboutElement = document
-    .querySelector('.BorderGrid .octicon-book')
+    .querySelector('.octicon-book')
     .closest('.BorderGrid-cell');
   const dateHTML = `
     <div id="gdc" class="mt-3">
