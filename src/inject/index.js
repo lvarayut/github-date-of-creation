@@ -6,8 +6,8 @@
  */
 function isLandPage() {
   let uri = window.location.pathname.substring(1);
-  if(uri.slice(-1) === '/'){
-    uri = uri.slice(0, -1);  
+  if (uri.endsWith('/')) {
+    uri = uri.slice(0, -1);
   }
   return uri.split('/').length === 2;
 }
