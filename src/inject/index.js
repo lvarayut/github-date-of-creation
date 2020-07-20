@@ -5,7 +5,10 @@
  * @returns {boolean}
  */
 function isLandPage() {
-  const uri = window.location.pathname.substring(1);
+  let uri = window.location.pathname.substring(1);
+  if (uri.endsWith('/')) {
+    uri = uri.slice(0, -1);
+  }
   return uri.split('/').length === 2;
 }
 
