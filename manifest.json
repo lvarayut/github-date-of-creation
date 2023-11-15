@@ -1,7 +1,7 @@
 {
   "name": "Github - Date of creation",
   "version": "1.0.4",
-  "manifest_version": 2,
+  "manifest_version": 3,
   "description": "Display a date of creation of a repository hosted on Github",
   "homepage_url": "https://github.com/lvarayut/github-date-of-creation",
   "icons": {
@@ -10,12 +10,13 @@
     "128": "icons/icon128.png"
   },
   "author": "Varayut Lerdkanlayanawat",
-  "browser_action": {
+  "action": {
     "default_icon": "icons/icon19.png"
   },
-  "permissions": ["http://github.com/*", "https://github.com/*", "storage"],
+  "permissions": ["storage"],
+  "host_permissions": ["http://github.com/*", "https://github.com/*" ],
   "background": {
-    "scripts": ["src/bg/index.js"]
+    "service_worker": "src/bg/index.js"
   },
   "content_scripts": [
     {
@@ -28,7 +29,6 @@
     }
   ],
   "options_ui": {
-    "page": "src/option/index.html",
-    "chrome_style": true
+    "page": "src/option/index.html"
   }
 }
