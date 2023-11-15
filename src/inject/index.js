@@ -122,7 +122,7 @@ function formatDate(date, format) {
  */
 function injectDateToHTML(date) {
   const h2Elems = Array.from(
-    document.querySelectorAll('.repository-content .BorderGrid-cell > h2')
+    document.querySelectorAll('.repository-content .BorderGrid-cell h2')
   );
 
   const aboutElementContainer = h2Elems.find(
