@@ -4,4 +4,4 @@ function handleBrowserActionClicked() {
   chrome.runtime.openOptionsPage();
 }
 
-chrome.browserAction.onClicked.addListener(handleBrowserActionClicked);
+chrome.action.onClicked.addListener(handleBrowserActionClicked);
