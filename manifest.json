@@ -1,6 +1,6 @@
 {
   "name": "Github - Date of creation",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "manifest_version": 3,
   "description": "Display a date of creation of a repository hosted on Github",
   "homepage_url": "https://github.com/lvarayut/github-date-of-creation",
@@ -14,7 +14,7 @@
     "default_icon": "icons/icon19.png"
   },
   "permissions": ["storage"],
-  "host_permissions": ["http://github.com/*", "https://github.com/*" ],
+  "host_permissions": ["http://github.com/*", "https://github.com/*"],
   "background": {
     "service_worker": "src/bg/index.js"
   },
